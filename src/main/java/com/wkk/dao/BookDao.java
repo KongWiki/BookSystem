@@ -43,5 +43,5 @@ public interface BookDao {
     /**
      * 删除书籍
      */
-    int deleteBook(long id);
+    int deleteBookById(long id);
 }

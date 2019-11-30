@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wkk.dao.BookDao">
+    <!--目的: 为dao接口方法提供sql语句配置
+    即针对dao接口中的方法编写sql语句
+    在BookDao中共有五个方法,
+    1. int addBook(Book book);
+    2. int deleteBookById(long id);
+    3. int updateBook(Book book);
+    4. Book queryById(long id);
+    5. List<Book> queryAll(int offset, int limit)
+    -->
+    <insert id="addBook">
+        <!--手写DDL-->
+        INSERT  INTO book (`book_id`, `name`, `number`, `detail`)
+        VALUES (#{book_id}, #{name}, #{number}, #{detail})
+
+    </insert>
+
+    <delete id="deleteBookById">
+        DELETE FROM book
+        WHERE book_id = #{book_id}
+    </delete>
+
+    <update id="updateBook" parameterType="Book">
+        UPDATE book
+        SET name   = #{name},
+            number = #{number},
+            detail = #{detail}
+        WHERE book_id = #{book_id}
+        AND number > 0
+    </update>
+
+    <select id="queryById" resultType="Book" parameterType="long">
+        SELECT book_id, name, number, detail
+        FRom book
+        WHERE book_id = #{book_id}
+
+    </select>
+
+    <select id="queryAll" resultType="Book" parameterType="int">
+        SELECT book_id, name, number, detail
+        FROM book
+        ORDER BY book_id DESC
+        LIMIT #{offset}, #{limit}
+    </select>
+</mapper>
