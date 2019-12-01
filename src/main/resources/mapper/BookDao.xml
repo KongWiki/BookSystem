@@ -15,13 +15,13 @@
     <insert id="addBook">
         <!--手写DDL-->
         INSERT  INTO book (`book_id`, `name`, `number`, `detail`)
-        VALUES (#{book_id}, #{name}, #{number}, #{detail})
+        VALUES (#{bookId}, #{name}, #{number}, #{detail})
 
     </insert>
 
     <delete id="deleteBookById">
         DELETE FROM book
-        WHERE book_id = #{book_id}
+        WHERE book_id = #{bookId}
     </delete>
 
     <update id="updateBook" parameterType="Book">
@@ -29,21 +29,21 @@
         SET name   = #{name},
             number = #{number},
             detail = #{detail}
-        WHERE book_id = #{book_id}
+        WHERE book_id = #{bookId}
         AND number > 0
     </update>
 
     <select id="queryById" resultType="Book" parameterType="long">
         SELECT book_id, name, number, detail
         FRom book
-        WHERE book_id = #{book_id}
+        WHERE book_id = #{bookId}
 
     </select>
 
     <select id="queryAll" resultType="Book" parameterType="int">
         SELECT book_id, name, number, detail
         FROM book
-        ORDER BY book_id DESC
+        ORDER BY book_id
         LIMIT #{offset}, #{limit}
     </select>
 </mapper>

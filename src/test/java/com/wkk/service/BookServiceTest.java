@@ -8,6 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import java.util.List;
+
 import static org.junit.Assert.*;
 
 /**
@@ -45,5 +47,9 @@ public class BookServiceTest {
 
     @Test
     public void getList() {
+        List<Book> books = bookService.getList(0, 1000);
+        for (Book book : books) {
+            System.out.println(book.getName() + " " + "书的id为"+book.getBookId());
+        }
     }
 }

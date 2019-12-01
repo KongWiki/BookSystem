@@ -34,9 +34,9 @@ public class BookController {
         return "list"; // WEB-INF/jsp/list.jsp
     }
 
-    @RequestMapping(value = "/detail/{book_id}", method = RequestMethod.GET)
-    private String detail(@PathVariable("book_id") Long book_id, Model model) {
-        Book book = bookService.getById(book_id);
+    @RequestMapping(value = "/detail/{bookId}", method = RequestMethod.GET)
+    private String detail(@PathVariable("bookId") Long bookId, Model model) {
+        Book book = bookService.getById(bookId);
         model.addAttribute("book", book);
         return "detail";
     }
@@ -44,7 +44,7 @@ public class BookController {
     @RequestMapping(value = "/add", method = RequestMethod.POST, produces = "text/plain;charset=utf-8")
     @ResponseBody
     private String add(Book book) {
-        Book hasBooks = bookService.getById(book.getBook_id());
+        Book hasBooks = bookService.getById(book.getBookId());
         int i = -2;
         if (hasBooks == null) {
             i = bookService.addBook(book);
@@ -55,7 +55,7 @@ public class BookController {
 
     @RequestMapping(value = "/del/{bookId}", method = RequestMethod.POST)
     @ResponseBody
-    private String deleteBookById(@PathVariable("book_id") Long id) {
+    private String deleteBookById(@PathVariable("bookId") Long id) {
         int i = bookService.deleteBook(id);
         return i > 0 ? "success" : "error";
     }

@@ -29,9 +29,9 @@ public class BookDaoTest {
 
     @Test
     public void queryById() {
-        long id = 1;
+        long id = 5;
         Book book = bookDao.queryById(id);
-        System.out.println("书名: "+ book.getName() + " 数量: " +book.getNumber() + "　描述: "+  book.getDetail());
+        System.out.println("id号: "+ book.getBookId() + " 书名: "+ book.getName() + " 数量: " +book.getNumber() + "　描述: "+  book.getDetail());
 
     }
 
@@ -39,7 +39,7 @@ public class BookDaoTest {
     public void queryAll() {
         List<Book> books = bookDao.queryAll(10, 5);
         for (Book book : books) {
-            System.out.print("书名: " + book.getName() +" 描述: "+ book.getDetail()+ " 数量: " + book.getNumber());
+            System.out.print("书名: " + book.getName() +" 描述: "+ book.getDetail()+ " 数量: " + book.getNumber()+ " " + book.getBookId());
             System.out.println();
 
         }
@@ -49,10 +49,10 @@ public class BookDaoTest {
 
     @Test
     public void addBook() {
-        for(int i =10; i<15; i++){
+        for(int i =15; i<17; i++){
             Random random = new Random();
             Book book = new Book();
-            book.setBook_id(i);
+            book.setBookId(i);
             book.setName("测试" + i);
             book.setNumber(random.nextInt(100));
             book.setDetail("测试, 无需描述" + i) ;
@@ -68,7 +68,7 @@ public class BookDaoTest {
         Book book = new Book();
         book.setName("设计模式");
         book.setNumber(512);
-        book.setBook_id(book_id);
+        book.setBookId(book_id);
         book.setDetail("必看书籍");
         int num = bookDao.updateBook(book);
         System.out.println("更新成功");

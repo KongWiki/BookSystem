@@ -6,17 +6,17 @@ package com.wkk.entity;
  * @Email: kongwiki@163.com
  */
 public class Book {
-    private long book_id;
+    private long bookId;
     private String name;
     private int number;
     private String detail;
 
-    public long getBook_id() {
-        return book_id;
+    public long getBookId() {
+        return bookId;
     }
 
-    public void setBook_id(long book_id) {
-        this.book_id = book_id;
+    public void setBookId(long bookId) {
+        this.bookId = bookId;
     }
 
     public String getName() {
